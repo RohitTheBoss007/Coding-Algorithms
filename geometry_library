@@ -1,0 +1,143 @@
+#include<bits/stdc++.h>
+using namespace std;
+// #define ll long long
+//#define int long long
+#define mod 1000000007
+#define fast  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define f(i,n) for(ll i=0;i<n;i++)
+#define trace(x) cerr<<#x<<": "<<x<<" "<<endl
+#define trace2(x, y) cerr<<#x<<": "<<x<<" | "<<#y<<": "<<y<<endl
+#define trace3(x, y, z) cerr<<#x<<":" <<x<<" | "<<#y<<": "<<y<<" | "<<#z<<": "<<z<<endl
+#define trace4(a, b, c, d) cerr<<#a<<": "<<a<<" | "<<#b<<": "<<b<<" | "<<#c<<": "<<c<<" | "<<#d<<": "<<d<<endl
+#define cout1(a) cout<<a<<endl
+#define cout2(a,b) cout<<a<<" "<<b<<endl
+#define cout3(a,b,c) cout<<a<<" "<<b<<" "<<c<<endl
+#define cout4(a,b,c,d) cout<<a<<" "<<b<<" "<<c<<" "<<d<<endl
+#define vcout(v,i) cout<<v[i].fi<<" "<<v[i].se<<endl
+// #define x first
+// #define y second
+#define mp make_pair
+#define pb push_back
+#define all(a) (a).begin(), (a).end()
+#define ms(v,n) memset((v),n,sizeof(v));
+#define pll pair<ll,ll>
+#define mll map<ll,ll>
+#define sll set<ll>
+#define vll vector<ll>
+#define vpll vector<pll>
+#define maxi(a,b,c) max(a,max(b,c))
+#define maxii(a,b,c,d) max(max(a,b),max(c,d))
+#define mini(a,b,c) min(a,min(b,c))
+#define md(a,b)  ((a%mod)*(b%mod)+mod)%mod 
+#define ad(a,b)  (a%mod+b%mod+mod)%mod
+#define nl "\n"
+#define inf 1e18
+#define cases ll T;cin>>T;while(T--)
+#define BLOCK 500
+//const double PI = 3.141592653589793238460;
+template<typename T> bool mmax(T &m, const T q) { if (m < q) {m = q; return true;} else return false; }
+template<typename T> bool mmin(T &m, const T q) { if (m > q) {m = q; return true;} else return false; }
+typedef std::complex<double> Complex;
+typedef std::valarray<Complex> CArray;
+ 
+using namespace std;
+
+template<typename T> T K(T a){return a*a;}
+#define K(a) K(1LL*(a))
+typedef long double ll; //change to long double/long long
+typedef long double ld;
+
+const ld PI=2*acos(0);
+const ld eps=1e-12;
+
+struct P{
+    ll x,y;
+    P operator+(P b)
+    {
+        return P{x+b.x,y+b.y};
+    }
+    P operator-(P b)
+    {
+        return P{x-b.x,y-b.y};
+    }
+    ll operator*(P b)
+    {
+        return x*b.y-y*b.x;
+    }
+    P operator*(ll mul)
+    {
+        return P{x*mul,y*mul};
+    }
+
+    ll dot(P b){ return x*b.x+y*b.y; }
+    ll len(){ return sqrt(K(x)+K(y));}
+    P scaleTo(ld to){return *this * (to/len());}
+    ld dist(P &b){return (*this-b).len();}
+    P rotate90(){return P{-y,x};}
+    ld angle(){return atan2(y,x);}
+    P rotate(ld ang)
+    {
+        ld c=cos(ang),s=sin(ang);
+        return {x*c - y*s,x*s + y*c};
+    }
+    
+
+};
+
+struct L2{
+    P one,two;
+    P dir(){return two-one;}
+    P normal(){return dir().rotate90();}
+    ld dist(P he){
+    return abs((he-one)*(he-two))/one.dist(two);
+    }
+    ld segDist(P he){
+        if((he-two)*normal()<0 && (normal()*(he-one)<0))
+        return dist(he);
+        return min(one.dist(he),two.dist(he));
+    }
+    P inter(L2 he)
+    {
+        P A=dir(),B=he.dir();
+        ll den=A*B;
+        assert(abs(den)>eps); //maybe parallel
+        return (A*(he.one*he.two)-B*(one*two))*(1.0/den);
+    }
+    P project(P he)
+    {
+        P unit_normal=normal().scaleTo(1);
+        return he+unit_normal*unit_normal.dot(one-he);
+    }
+    P reflect(P he)
+    {
+        return project(he)*2-he;
+    }
+};
+
+//ax+by+c=0;
+L2 toL2(ll a,ll b,ll c)
+{
+    P first;
+    if(abs(b)>eps) first=P{0,(ld)-c/b};
+    else if(abs(a)>eps) first=P{(ld)-c/a,0};
+    else assert(false); //a,b cant be zero at the same time
+    return L2{first,first+P{b,-a}};
+
+}
+
+
+
+int main()
+{
+    
+    fast   
+
+
+
+
+
+    
+
+    return 0;
+    
+}
