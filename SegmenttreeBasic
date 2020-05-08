@@ -1,0 +1,160 @@
+
+// Problem : Help Ashu
+// Contest : HackerEarth - Data Structures - Advanced Data Structures 
+// URL : https://www.hackerearth.com/practice/data-structures/advanced-data-structures/fenwick-binary-indexed-trees/practice-problems/algorithm/help-ashu-1/
+// Memory Limit : 256 MB
+// Time Limit : 1000 ms
+// Powered by CP Editor (https://github.com/cpeditor/cpeditor)
+
+//look at my code
+//my code is amazing
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define int long long
+#define mod 1000000007 //998244353
+#define fast  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define f(i,n) for(ll i=0;i<n;i++)
+#define nl "\n"
+#define trace(x) cerr<<#x<<": "<<x<<" "<<endl
+#define trace2(x, y) cerr<<#x<<": "<<x<<" | "<<#y<<": "<<y<<endl
+#define trace3(x, y, z) cerr<<#x<<":" <<x<<" | "<<#y<<": "<<y<<" | "<<#z<<": "<<z<<endl
+#define trace4(a, b, c, d) cerr<<#a<<": "<<a<<" | "<<#b<<": "<<b<<" | "<<#c<<": "<<c<<" | "<<#d<<": "<<d<<endl
+#define cout1(a) cout<<a<<nl
+#define cout2(a,b) cout<<a<<" "<<b<<nl
+#define cout3(a,b,c) cout<<a<<" "<<b<<" "<<c<<nl
+#define cout4(a,b,c,d) cout<<a<<" "<<b<<" "<<c<<" "<<d<<nl
+#define vcout(v,i) cout<<v[i].fi<<" "<<v[i].se<<nl
+#define x first
+#define y second
+#define vc vector
+#define pb push_back
+#define ar array
+#define all(a) (a).begin(), (a).end()
+#define ms(v,n,x) fill(v,v+n,x);
+#define init(c,a) memset(c,a,sizeof(c))
+#define pll pair<ll,ll>
+#define mll map<ll,ll>
+#define sll set<ll>
+#define vll vector<ll>
+#define vpll vector<pll>
+#define maxi(a,b,c) max(a,max(b,c))
+#define maxii(a,b,c,d) max(max(a,b),max(c,d))
+#define mini(a,b,c) min(a,min(b,c))
+#define md(a,b)  ((a%mod)*(b%mod)+mod)%mod 
+#define inf 9e18
+#define cases ll T;cin>>T;while(T--)
+#define BLOCK 500
+//const double PI = 3.141592653589793238460;
+template<typename T> bool mmax(T &m, const T q) { if (m < q) {m = q; return true;} else return false; }
+template<typename T> bool mmin(T &m, const T q) { if (m > q) {m = q; return true;} else return false; }
+typedef std::complex<double> Complex;
+typedef std::valarray<Complex> CArray;
+const int N=1e5+5;
+ll a[N];
+pll t[4*N]; //odd even
+void build(ll v,ll tl,ll tr){
+	if(tl==tr){
+		if(a[tl]%2==0)
+		t[v]={0,1};
+		else
+		t[v]={1,0};
+	}
+	
+	else{
+		
+		ll tm=(tl+tr)>>1;
+		build(2*v,tl,tm);
+		build(2*v+1,tm+1,tr);
+		t[v].x=t[2*v].x+t[2*v+1].x;
+		t[v].y=t[2*v].y+t[2*v+1].y;
+	}
+	
+}
+void update(ll v,ll tl,ll tr,ll pos,ll val){
+	if(tl==tr){
+		if(val%2==0)
+		t[v]={0,1};
+		else
+		t[v]={1,0};
+		a[pos]=val;
+	}	
+	
+	else{
+		ll tm=(tl+tr)>>1;
+		if(pos<=tm)
+		update(2*v,tl,tm,pos,val);
+		else
+		update(2*v+1,tm+1,tr,pos,val);
+		
+		t[v].x=t[2*v].x+t[2*v+1].x;
+		t[v].y=t[2*v].y+t[2*v+1].y;
+		
+	}
+	
+}
+pll query(ll v,ll tl,ll tr,ll l,ll r){
+	
+	if(tl>r || tr<l)
+	return {0,0};
+	if(l>r)
+	return {0,0};
+	
+	if(l<=tl and r>=tr){
+		return t[v];
+	}
+	
+	ll tm=(tl+tr)>>1;
+	pll a=query(2*v,tl,tm,l,r);
+	pll b=query(2*v+1,tm+1,tr,l,r);
+	return {(a.x+b.x),(a.y+b.y)};
+	
+}
+
+int32_t main()
+{
+    
+	fast
+	ll n,m;
+	cin>>n;
+	
+	for(ll i=1;i<=n;i++){
+		cin>>a[i];
+	}
+	
+	build(1,1,n);
+	
+	cin>>m;
+	f(i,m){
+		
+		ll c,l,r;
+		cin>>c>>l>>r;
+		if(c==0){
+			if(a[l]%2!=r%2)
+			update(1,1,n,l,r);
+			
+		}
+		else{
+		pll ans=query(1,1,n,l,r);
+		if(c==1){
+			cout<<ans.y<<nl;
+		}
+		else{
+			cout<<ans.x<<nl;
+		}
+		}
+		
+	}
+	
+	
+	
+
+	
+
+
+
+    
+
+	return 0;
+    
+}
