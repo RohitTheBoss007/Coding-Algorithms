@@ -1,0 +1,107 @@
+
+// Problem : D. Distance in Tree
+// Contest : Codeforces - VK Cup 2012 Round 1
+// URL : https://codeforces.com/contest/161/problem/D
+// Memory Limit : 512 MB
+// Time Limit : 3000 ms
+// Powered by CP Editor (https://github.com/cpeditor/cpeditor)
+
+//look at my code
+//my code is amazing
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define int long long
+#define mod 1000000007 //998244353
+#define fast  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define f(i,n) for(ll i=0;i<n;i++)
+#define nl "\n"
+#define trace(x) cerr<<#x<<": "<<x<<" "<<endl
+#define trace2(x, y) cerr<<#x<<": "<<x<<" | "<<#y<<": "<<y<<endl
+#define trace3(x, y, z) cerr<<#x<<":" <<x<<" | "<<#y<<": "<<y<<" | "<<#z<<": "<<z<<endl
+#define trace4(a, b, c, d) cerr<<#a<<": "<<a<<" | "<<#b<<": "<<b<<" | "<<#c<<": "<<c<<" | "<<#d<<": "<<d<<endl
+#define cout1(a) cout<<a<<nl
+#define cout2(a,b) cout<<a<<" "<<b<<nl
+#define cout3(a,b,c) cout<<a<<" "<<b<<" "<<c<<nl
+#define cout4(a,b,c,d) cout<<a<<" "<<b<<" "<<c<<" "<<d<<nl
+#define vcout(v,i) cout<<v[i].fi<<" "<<v[i].se<<nl
+#define x first
+#define y second
+#define vc vector
+#define pb push_back
+#define ar array
+#define all(a) (a).begin(), (a).end()
+#define ms(v,n,x) fill(v,v+n,x);
+#define init(c,a) memset(c,a,sizeof(c))
+#define pll pair<ll,ll>
+#define mll map<ll,ll>
+#define sll set<ll>
+#define vll vector<ll>
+#define vpll vector<pll>
+#define maxi(a,b,c) max(a,max(b,c))
+#define maxii(a,b,c,d) max(max(a,b),max(c,d))
+#define mini(a,b,c) min(a,min(b,c))
+#define md(a,b)  ((a%mod)*(b%mod)+mod)%mod 
+#define inf 9e18
+#define cases ll T;cin>>T;while(T--)
+#define BLOCK 500
+//const double PI = 3.141592653589793238460;
+template<typename T> bool mmax(T &m, const T q) { if (m < q) {m = q; return true;} else return false; }
+template<typename T> bool mmin(T &m, const T q) { if (m > q) {m = q; return true;} else return false; }
+typedef std::complex<double> Complex;
+typedef std::valarray<Complex> CArray;
+const int N=50010,K=505;
+vll g[N];
+ll dp[N][K]; //note that we can reduce the dimension to k level only
+ll n,k;
+ll ans=0;
+
+//dp[i][j] -- no of nodes at a distance of j from node i
+
+
+void dfs(ll u,ll par){
+	dp[u][0]++;
+	for(auto i:g[u]){
+		if(i==par)
+		continue;
+		
+		dfs(i,u);
+		
+    //note that here we have not considered the subtree rooted at this child yet
+		for(ll j=0;j<k;j++)
+		ans+=dp[i][j]*dp[u][k-j-1];
+		
+		
+		for(ll j=0;j<=k;j++)
+		dp[u][j+1]+=dp[i][j];
+		
+		
+		
+	}
+}
+
+
+int32_t main()
+{
+    
+	fast
+	cin>>n>>k;
+	f(i,n-1){
+		ll a,b;
+		cin>>a>>b;
+		g[a].pb(b);
+		g[b].pb(a);
+		
+	}
+	dfs(1,0);
+	
+cout<<ans;
+	
+
+
+
+    
+
+	return 0;
+    
+}
