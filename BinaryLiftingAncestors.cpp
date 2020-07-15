@@ -1,22 +1,4 @@
-/*
-        FFFFFFFFFFFFFFFFFFFFFF
-        F::::::::::::::::::::F
-        F::::::::::::::::::::F
-        FF::::::FFFFFFFFF::::F
-          F:::::F       FFFFFF
-          F:::::F
-          F::::::FFFFFFFFFF
-          F:::::::::::::::F
-          F:::::::::::::::F
-          F::::::FFFFFFFFFF
-          F:::::F
-          F:::::F
-        FF:::::::FF
-        F::::::::FF
-        F::::::::FF
-        FFFFFFFFFFF
-*/
- 
+
 #include<bits/stdc++.h>
 using namespace std;
 #define ll int
