@@ -1,0 +1,60 @@
+string lcs(string s,string t){
+	ll n=s.size();
+	ll m=t.size();
+	vc<vll> dp(n+1,vll(m+1,0));
+	vc<vll> choice(n+1,vll(m+1,0));
+	
+	if(s[0]==t[0])
+	{
+		dp[0][0]=1;
+		choice[0][0]=2;		
+	}
+	
+	f(i,n){
+		f(j,m){
+			if(i>0){
+				dp[i][j]=dp[i-1][j];
+				choice[i][j]=0;
+			}
+			if(j>0){
+				if(dp[i][j-1]>dp[i][j]){
+					dp[i][j]=dp[i][j-1];
+					choice[i][j]=1;
+				}
+			}
+			if(s[i]==t[j]){
+				ll ans=1;
+				if(i>0 and j>0)
+				ans=1+dp[i-1][j-1];
+				if(ans>dp[i][j]){
+					dp[i][j]=ans;
+					choice[i][j]=2;
+				}
+
+				
+			}
+			
+		}
+	}
+	
+	ll i=n-1,j=m-1;
+	
+	string res;
+	while(i>=0 and j>=0){
+		if(choice[i][j]==0){
+			i--;
+		}
+		else if(choice[i][j]==1){
+			j--;
+		}
+		else{
+			res+=s[i];
+			i--;j--;
+		}
+	}
+	
+	reverse(all(res));
+	return res;
+	
+	
+}	 
