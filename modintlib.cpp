@@ -5,7 +5,7 @@ using namespace std;
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 #define fast  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-#define f(i,n) for(ll i=0;i<n;i++)
+#define f(i,n) for(int i=0;i<n;i++)
 #define fore(i, a, b) for (ll i = (ll)(a); i <= (ll)(b); ++i)
 #define nl "\n"
 #define trace(x) cerr<<#x<<": "<<x<<" "<<endl
