@@ -4,7 +4,6 @@ using namespace std;
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("unroll-loops")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
-#define ll long long
 #define fast  ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 #define f(i,n) for(ll i=0;i<n;i++)
 #define fore(i, a, b) for (ll i = (ll)(a); i <= (ll)(b); ++i)
@@ -226,7 +225,7 @@ ModType& md = VarMod::value;
 using Mint = Modular<VarMod>;
 */
  
-constexpr int md = 998244353;
+constexpr int md = 998244353; //1000000007
 using Mint = Modular<std::integral_constant<decay<decltype(md)>::type, md>>;
  
 vector<Mint> fact(1, 1);
@@ -242,4 +241,4 @@ Mint C(int n, int k) {
   }
   return fact[n] * inv_fact[k] * inv_fact[n - k];
 }
- 
+#define ll Mint 
