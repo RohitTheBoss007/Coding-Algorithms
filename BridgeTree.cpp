@@ -4,7 +4,6 @@
 // URL : https://codeforces.com/problemset/problem/1000/E
 // Memory Limit : 256 MB
 // Time Limit : 2000 ms
-// Powered by CP Editor (https://github.com/cpeditor/cpeditor)
 
 // author - chick_magnet® 
 
