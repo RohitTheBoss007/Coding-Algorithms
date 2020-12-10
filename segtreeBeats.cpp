@@ -72,6 +72,7 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 mt19937_64 rng(chrono::high_resolution_clock::now().time_since_epoch().count());
 
+//Segtree beats template taken from : https://codeforces.com/profile/generic_placeholder_name
  
 const int N=500005;
 class SegmentTree {
@@ -383,11 +384,8 @@ int32_t main()
 		}	
 		else
 		now++;
-		
-		
 		t.add_val(i-now+1,i+1,1);
-		t.update_max(0,i-now+1,now);
-		
+		t.update_max(0,i-now+1,now);		
 		ans+=t.query_sum(0,i+1);
 		
 	}
