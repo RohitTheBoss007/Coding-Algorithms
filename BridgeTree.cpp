@@ -5,7 +5,6 @@
 // Memory Limit : 256 MB
 // Time Limit : 2000 ms
 
-// author - chick_magnet® 
 
 #include<bits/stdc++.h>
 using namespace std;
